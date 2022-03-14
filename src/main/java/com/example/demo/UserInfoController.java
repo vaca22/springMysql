@@ -16,11 +16,7 @@ public class UserInfoController {
      * @return
      */
     @GetMapping(value = "/list")
-    public List<UserInfo> getUserList(){
-        UserInfo user = new UserInfo();
-        user.setUsername("fruck");
-        user.setPassword("yopu");
-        userInfoRepository.save(user);
+    public List<UserLogin> getUserList(){
         return userInfoRepository.findAll();
     }
 
@@ -31,10 +27,10 @@ public class UserInfoController {
      * @return
      */
     @PostMapping(value = "/addUser")
-    public UserInfo addUser(@RequestParam("username") String username,
-                            @RequestParam("password") String password){
-        UserInfo user = new UserInfo();
-        user.setUsername(username);
+    public UserLogin addUser(@RequestParam("phone") String phone,
+                             @RequestParam("password") String password){
+        UserLogin user = new UserLogin();
+        user.setPhone(phone);
         user.setPassword(password);
         return userInfoRepository.save(user);
     }
@@ -46,26 +42,24 @@ public class UserInfoController {
      * @param password
      * @return
      */
-    @PutMapping(value = "updUser/{id}")
-    public UserInfo updUser(@PathVariable("id") Integer id,
-                            @RequestParam("username") String username,
+    @PutMapping(value = "updUser/{phone}")
+    public UserLogin updUser(
+                            @PathVariable("phone") String phone,
                             @RequestParam("password") String password){
-        UserInfo user = new UserInfo();
-        user.setId(id);
-        user.setUsername(username);
+        UserLogin user = new UserLogin();
+        user.setPhone(phone);
         user.setPassword(password);
         return userInfoRepository.save(user);
-
     }
 
     /**
      * 删
      * @param id
      */
-    @DeleteMapping(value = "delUser/{id}")
-    public void delUser(@PathVariable("id") Integer id){
-        UserInfo user = new UserInfo();
-        user.setId(id);
+    @DeleteMapping(value = "delUser/{phone}")
+    public void delUser(@PathVariable("phone") String phone){
+        UserLogin user = new UserLogin();
+        user.setPhone(phone);
         userInfoRepository.delete(user);
     }
 
