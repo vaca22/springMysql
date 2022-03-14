@@ -59,7 +59,7 @@ public class UserInfoController {
     @GetMapping(value = "/fuck")
     public List<UserLogin> addUser(){
         List<UserLogin>  d= userInfoRepository.findByPassword("sdf");
-        return d;
+        return userInfoRepository.retrieveByName();
     }
 
     /**
