@@ -35,6 +35,13 @@ public class UserInfoController {
         return userInfoRepository.save(user);
     }
 
+
+    @PostMapping(value = "/fuck")
+    public UserLogin addUser(@RequestBody UserLogin nx){
+
+        return userInfoRepository.save(nx);
+    }
+
     /**
      * 改
      * @param id
