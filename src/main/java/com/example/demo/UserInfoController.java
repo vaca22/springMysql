@@ -19,7 +19,7 @@ public class UserInfoController {
 
     @GetMapping("/send/{input}")
     public void sendFoo(@PathVariable String input) {
-        this.template.send("topic_input", input);
+        this.template.send("fuck", input);
     }
     @KafkaListener(id = "webGroup", topics = "topic_input")
     public void listen(String input) {
