@@ -12,4 +12,7 @@ public interface UserInfoRepository extends JpaRepository<UserLogin,String> {
 
     @Query("SELECT m FROM UserLogin m")
     List<UserLogin> retrieveByName();
+
+    @Query("SELECT m FROM UserLogin m WHERE m.password=:password")
+    List<UserLogin> retrieveByName2(String password);
 }
