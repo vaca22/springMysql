@@ -19,7 +19,6 @@ public class UserInfoController {
     public List<UserInfo> getUserList(){
         UserInfo user = new UserInfo();
         user.setUsername("fruck");
-        user.setId(324);
         user.setPassword("yopu");
         userInfoRepository.save(user);
         return userInfoRepository.findAll();
