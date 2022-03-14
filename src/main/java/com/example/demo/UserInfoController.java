@@ -52,8 +52,14 @@ public class UserInfoController {
 
     @PostMapping(value = "/fuck")
     public UserLogin addUser(@RequestBody UserLogin nx){
+        List<UserLogin>  d= userInfoRepository.findByPassword("sdf");
+        return d.get(0);
+    }
 
-        return userInfoRepository.save(nx);
+    @GetMapping(value = "/fuck")
+    public List<UserLogin> addUser(){
+        List<UserLogin>  d= userInfoRepository.findByPassword("sdf");
+        return d;
     }
 
     /**

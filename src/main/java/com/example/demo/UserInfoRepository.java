@@ -2,6 +2,12 @@ package com.example.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserInfoRepository extends JpaRepository<UserLogin,Integer> {
+import java.util.List;
+
+public interface UserInfoRepository extends JpaRepository<UserLogin,String> {
+
+
+    List<UserLogin> findByPassword(String password);
+
 
 }
