@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.requestback.RegisterReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -19,14 +20,22 @@ public class UserInfoController {
     private KafkaTemplate<Object, Object> template;
 
 
+    @PostMapping(value = "/register")
+    public RegisterReturn register(@RequestParam("phone") String phone,
+                                   @RequestParam("password") String password) {
+        UserLogin user = new UserLogin();
+        user.setPhone(phone);
+        user.setPassword(password);
+        List<String> n1 = userInfoRepository.findByPhone(phone);
 
+        if (n1.isEmpty()) {
+            userInfoRepository.save(user);
+            return new RegisterReturn(1, "register success", null);
+        } else {
+            return new RegisterReturn(-1, "the phone has been registered", null);
+        }
 
-
-
-
-
-
-
+    }
 
 
     @GetMapping("/send/{input}")

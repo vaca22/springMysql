@@ -9,8 +9,8 @@ public interface UserInfoRepository extends JpaRepository<UserLogin,String> {
 
 
     List<UserLogin> findByPassword(String password);
-
-    List<UserLogin> findByPhone(String phone);
+    @Query("SELECT m.phone FROM UserLogin m WHERE m.phone=:phone")
+    List<String> findByPhone(String phone);
 
     @Query("SELECT m FROM UserLogin m")
     List<UserLogin> retrieveByName();
