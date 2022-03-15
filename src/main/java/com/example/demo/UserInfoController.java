@@ -12,12 +12,22 @@ import java.util.List;
 @RequestMapping("/cloud-napi/v1")
 public class UserInfoController {
 
-    @Autowired
+
     private UserInfoRepository userInfoRepository;
 
+    @Autowired
+    public void setUserInfoRepository(UserInfoRepository userInfoRepository) {
+        this.userInfoRepository = userInfoRepository;
+    }
+
+
+    private KafkaTemplate<Object, Object> template;
+
 
     @Autowired
-    private KafkaTemplate<Object, Object> template;
+    public void setTemplate(KafkaTemplate<Object, Object> template) {
+        this.template = template;
+    }
 
 
     @PostMapping(value = "/register")
