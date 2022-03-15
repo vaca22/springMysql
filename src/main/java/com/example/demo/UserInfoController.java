@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/cloud-napi/v1")
 public class UserInfoController {
 
     @Autowired
@@ -16,6 +17,17 @@ public class UserInfoController {
 
     @Autowired
     private KafkaTemplate<Object, Object> template;
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/send/{input}")
     public void sendFoo(@PathVariable String input) {
