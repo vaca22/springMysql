@@ -31,11 +31,8 @@ public class UserInfoController {
 
 
     @PostMapping(value = "/register")
-    public RegisterReturn register(@RequestParam("phone") String phone,
-                                   @RequestParam("password") String password) {
-        UserLogin user = new UserLogin();
-        user.setPhone(phone);
-        user.setPassword(password);
+    public RegisterReturn register(@RequestBody UserLogin user) {
+        String phone=user.getPhone();
         List<String> n1 = userInfoRepository.findByPhone(phone);
 
         if (n1.isEmpty()) {
@@ -44,6 +41,26 @@ public class UserInfoController {
         } else {
             return new RegisterReturn(-1, "the phone has been registered", null);
         }
+
+    }
+
+    @PostMapping(value = "/login")
+    public RegisterReturn login(@RequestBody UserLogin user) {
+        String phone=user.getPhone();
+        String n1 = userInfoRepository.findByPhonePassword(phone);
+        if(n1==null){
+            return new RegisterReturn(2, "the phone has been registered", null);
+        }
+        if(n1.isEmpty()){
+            return new RegisterReturn(3, "the phone has been registered", null);
+        }
+        if (!n1.equals(user.getPassword())) {
+            return new RegisterReturn(4, "the phone has been registered", null);
+        }
+
+
+        return new RegisterReturn(1, "register success", null);
+
 
     }
 

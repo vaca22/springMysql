@@ -12,6 +12,11 @@ public interface UserInfoRepository extends JpaRepository<UserLogin,String> {
     @Query("SELECT m.phone FROM UserLogin m WHERE m.phone=:phone")
     List<String> findByPhone(String phone);
 
+
+
+    @Query("SELECT m.password FROM UserLogin m WHERE m.phone=:phone")
+    String findByPhonePassword(String phone);
+
     @Query("SELECT m FROM UserLogin m")
     List<UserLogin> retrieveByName();
 
