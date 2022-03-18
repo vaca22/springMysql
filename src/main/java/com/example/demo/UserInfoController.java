@@ -1,15 +1,18 @@
 package com.example.demo;
 
 import com.example.demo.requestback.RegisterReturn;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 
 @RestController
-@RequestMapping("/cloud-napi/v1")
+//@RequestMapping("/cloud-napi/v1")
 public class UserInfoController {
 
 
@@ -41,6 +44,29 @@ public class UserInfoController {
         } else {
             return new RegisterReturn(-1, "the phone has been registered", null);
         }
+
+    }
+
+    @PostMapping(value = "/napi/v1/msg")
+    public String sendMsg() {
+        String msg="hello";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone( TimeZone.getTimeZone("GMT+08:00"));
+        String time=sdf.format(System.currentTimeMillis());
+
+        JsonObject msg1= new JsonObject();
+        msg1.addProperty("msg",msg);
+        msg1.addProperty("readTime",time);
+
+
+        return msg1.toString();
+
+    }
+
+    @PostMapping(value = "/napi/v1/bp/data/upload")
+    public String uploadPc100(@RequestBody String user) {
+        System.out.println(user.toString());
+        return "good";
 
     }
 
