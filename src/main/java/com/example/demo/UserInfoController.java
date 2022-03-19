@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 @RestController
-//@RequestMapping("/cloud-napi/v1")
+@RequestMapping("/cloud-napi/v1")
 public class UserInfoController {
 
 
