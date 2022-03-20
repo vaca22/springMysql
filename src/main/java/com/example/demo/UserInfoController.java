@@ -35,6 +35,7 @@ public class UserInfoController {
 
     @PostMapping(value = "/register")
     public RegisterReturn register(@RequestBody UserLogin user) {
+        System.out.println("fuckyou");
         String phone=user.getPhone();
         List<String> n1 = userInfoRepository.findByPhone(phone);
 
