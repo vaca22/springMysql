@@ -73,7 +73,9 @@ public class UserInfoController {
 
     @PostMapping(value = "/login")
     public RegisterReturn login(@RequestBody UserLogin user) {
+        System.out.println("login");
         String phone=user.getPhone();
+
         String n1 = userInfoRepository.findByPhonePassword(phone);
         if(n1==null){
             return new RegisterReturn(2, "the phone has been registered", null);
